@@ -15,7 +15,7 @@ export async function sendVerificationEmail(email, token) {
   const verifyLink = `${CLIENT_URL}/verify?token=${token}`;
 
   const info = await transporter.sendMail({
-    from: `"TaskNest" <${process.env.GMAIL_USER}>`,
+    from: `"TaskHive" <${process.env.GMAIL_USER}>`,
     to: email,
     subject: "Verify your Email",
     html: `

@@ -21,7 +21,7 @@ const Welcome = () => {
 
         {/* Main content */}
         <div className="relative z-10 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+          <h1 className="text-3xl md:text-5xl font-extrabold text-white leading-tight">
             {isLoggedIn ? (
               <>
                 Welcome back,{" "}
@@ -32,12 +32,12 @@ const Welcome = () => {
             ) : (
               <>
                 Welcome to{" "}
-                <span className="text-blue-500 drop-shadow-md">TaskNest</span>
+                <span className="text-blue-500 drop-shadow-md">TaskHive</span>
               </>
             )}
           </h1>
 
-          <p className="text-lg text-gray-400">
+          <p className="md:text-lg text-[15px] text-gray-400">
             Organize, prioritize, and manage your daily tasks with clarity and
             focus.
           </p>

@@ -20,6 +20,7 @@ import {
   FiX,
   FiFileText,
 } from "react-icons/fi";
+import { toast } from "react-hot-toast";
 
 export default function DashboardLayout() {
   const [showMore, setShowMore] = useState(false);
@@ -65,38 +66,60 @@ export default function DashboardLayout() {
 
   // Category logic
   const handleAddCategory = () => {
-    if (!newCatName.trim()) return;
+    if (!newCatName.trim()) {
+      toast.error("Please add category first!");
+      return;
+    }
     createCategory(
       { name: newCatName.trim() },
-      { onSuccess: () => setNewCatName("") }
+      {
+        onSuccess: () => {
+          toast.success("Category added!");
+          setNewCatName("");
+        },
+        onError: () => toast.error("Failed to add category"),
+      }
     );
   };
 
   const handleRenameCategory = (catId) => {
-    if (!renamingCatName.trim()) return;
+    if (!renamingCatName.trim()) {
+      toast.error("Category name cannot be empty");
+      return;
+    }
     updateCategory(
       { categoryId: catId, updates: { name: renamingCatName } },
       {
         onSuccess: () => {
+          toast.success("Category renamed!");
           setRenamingCatId(null);
           setRenamingCatName("");
         },
+        onError: () => toast.error("Failed to rename category"),
       }
     );
   };
 
   const handleDeleteCategory = (categoryId) => {
     if (!window.confirm("Delete this category and its tasks?")) return;
-    deleteCategory(categoryId, {
-      onSuccess: () => {
-        if (selectedCategory === categoryId) setSelectedCategory(null);
-      },
-    });
+    deleteCategory(
+      { categoryId },
+      {
+        onSuccess: () => {
+          toast.success("Category deleted");
+          if (selectedCategory === categoryId) setSelectedCategory(null);
+        },
+        onError: () => toast.error("Failed to delete category"),
+      }
+    );
   };
 
   // Task logic
   const handleAddTask = () => {
-    if (!selectedCategory || !newTaskTitle.trim()) return;
+    if (!selectedCategory || !newTaskTitle.trim()) {
+      toast.error("Add a task title first!");
+      return;
+    }
     createTodo(
       {
         categoryId: selectedCategory,
@@ -105,9 +128,11 @@ export default function DashboardLayout() {
       },
       {
         onSuccess: () => {
+          toast.success("Task added!");
           setNewTaskTitle("");
           setNewTaskPriority("medium");
         },
+        onError: () => toast.error("Failed to add task"),
       }
     );
   };
@@ -119,7 +144,10 @@ export default function DashboardLayout() {
   };
 
   const handleSaveTask = (taskId) => {
-    if (!editingTaskTitle.trim()) return;
+    if (!editingTaskTitle.trim()) {
+      toast.error("Task title cannot be empty");
+      return;
+    }
     updateTodo(
       {
         categoryId: selectedCategory,
@@ -131,10 +159,12 @@ export default function DashboardLayout() {
       },
       {
         onSuccess: () => {
+          toast.success("Task updated!");
           setEditingTaskId(null);
           setEditingTaskTitle("");
           setEditingTaskPriority("medium");
         },
+        onError: () => toast.error("Failed to update task"),
       }
     );
   };
@@ -147,15 +177,30 @@ export default function DashboardLayout() {
 
   const handleDeleteTask = (taskId) => {
     if (!window.confirm("Delete this task?")) return;
-    removeTodo({ categoryId: selectedCategory, taskId });
+    removeTodo(
+      { categoryId: selectedCategory, taskId },
+      {
+        onSuccess: () => toast.success("Task deleted"),
+        onError: () => toast.error("Failed to delete task"),
+      }
+    );
   };
 
   const handleToggleTask = (task) => {
-    toggleTodo({
-      categoryId: selectedCategory,
-      taskId: task._id,
-      completed: !task.completed,
-    });
+    toggleTodo(
+      {
+        categoryId: selectedCategory,
+        taskId: task._id,
+        completed: !task.completed,
+      },
+      {
+        onSuccess: () =>
+          toast.success(
+            `Marked as ${task.completed ? "incomplete" : "completed"}`
+          ),
+        onError: () => toast.error("Failed to toggle task"),
+      }
+    );
   };
 
   return (
@@ -163,7 +208,7 @@ export default function DashboardLayout() {
       <div className="max-w-7xl mx-auto">
         <h1 className="sm:text-3xl text-2xl font-bold mb-8 flex items-center gap-3">
           <FiFileText className="text-blue-500" />{" "}
-          <span>TaskNest Dashboard</span>
+          <span>TaskHive Dashboard</span>
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full">
