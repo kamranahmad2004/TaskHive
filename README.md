@@ -1,63 +1,113 @@
-# ✅ TaskHive — A Full-Stack Productivity App
+# ✅ TaskHive 🐝 – A Full-Stack Productivity App
 
-**TaskHive** is a powerful full-stack to-do and category-based task management application. It helps users manage daily tasks, categorize them, and prioritize efficiently — all with a clean, modern UI and secure backend.
+**TaskHive** is a category-based task management application built with the **MERN** (MongoDB, Express, React, Node.js) stack. It helps users organize their tasks, assign priority, and manage daily productivity in an intuitive, dark-themed dashboard.
 
 ---
 
-## 🔥 Screenshots
+## 📸 Project Showcase
 
-### 🏠 Home Page  
-![Home](./screenshots/home.png)
-
-### 🔐 Signup Page  
-![Signup](./screenshots/signup.png)
-
-### 🔑 Login Page  
-![Login](./screenshots/login.png)
-
-### 📋 Dashboard  
-![Dashboard](./screenshots/dashboard.png)
+| Home Page | Login Page | Registration Page | Dashboard |
+|-----------|------------|-------------------|-----------|
+| ![Home](./screenshots/home.png) | ![Login](./screenshots/login.png) | ![Register](./screenshots/signup.png) | ![Dashboard](./screenshots/dashboard.png) |
 
 ---
 
 ## 🚀 Features
 
-- 🔐 User authentication and protected routes
-- 📁 Create, update, and delete task categories
-- ✅ Add tasks under specific categories
-- 🏷️ Assign priority levels: **Low**, **Medium**, or **High**
-- 📌 Mark tasks as complete/incomplete
-- 🌙 Clean UI with responsive design
-- 🚨 Toast notifications for actions
+- 🔐 User authentication with JWT (Login/Register)
+- 🎨 Dark-themed and responsive UI
+- 🗂️ Create, update, delete task categories
+- 📝 Add, edit, delete tasks under categories
+- ⏫ Set priority: Low, Medium, High
+- ✅ Mark tasks as complete/incomplete
+- 🔁 State management using React Context
+- 🌐 Toast notifications for all actions
+- 📱 Fully mobile responsive
 
 ---
 
 ## 🧱 Tech Stack
 
-### **Frontend:**
-- ⚛️ React.js
+### Frontend:
+- ⚛️ React + Vite
 - 💨 Tailwind CSS
-- 🔁 React Router
+- 🔁 React Router DOM
+- ✅ React Hook Form + Yup
 - 🍞 React Hot Toast
+- 📡 Axios
 
-### **Backend:**
-- ⚙️ Express.js
-- 🧬 MongoDB with Mongoose
+### Backend:
+- ⚙️ Node.js + Express
+- 🧬 MongoDB + Mongoose
 - 🔐 JWT Authentication
+- 🔑 bcrypt (password hashing)
+- 📧 Nodemailer (email verification)
+- 🌿 dotenv
 
 ---
 
-## 📦 Installation & Setup
+## 📁 Folder Structure
+
+```
+taskhive/
+├── client/ # React frontend
+│ ├── src/
+│ │ ├── pages/
+│ │ ├── components/
+│ │ ├── services/ 
+│ │ ├── utils/
+│ │ └── ...
+│ └── ...
+├── server/ # Node.js backend
+│ ├── models/
+│ ├── routes/
+│ ├── middleware/
+│ └── ...
+└── ...
+```
+
+
+---
+
+## 🧪 How to Run Locally
+
+### 1. Clone the Repo
 
 ```bash
-# Clone the repository
 git clone https://github.com/kamranahmad2004/TaskHive.git
 cd taskhive
+```
 
-# Install client dependencies
-cd client
-npm install
+### 2. Start the Backend
 
-# Install server dependencies
-cd ../server
+```bash
+cd server
 npm install
+npm start
+```
+
+Backend will start on `http://localhost:5000`
+
+### 3. Start the Frontend
+
+```bash
+cd ../client
+npm install
+npm run dev
+```
+
+Frontend will start on `http://localhost:5173`
+
+---
+
+## 💡 Notes
+
+- JWT is stored in localStorage (not HttpOnly cookie) for simplicity in this beginner project.
+- For more secure production apps, consider switching to HttpOnly cookie-based authentication.
+
+---
+
+## 📧 Contact
+
+Built with ❤️ by Kamran Ahmad
+_If you like the project, give it a star ⭐ and share it!_
