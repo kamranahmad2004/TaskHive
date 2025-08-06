@@ -1,4 +1,4 @@
-# ✅ TaskHive 🐝 – A Full-Stack Productivity App
+# ✅ TaskHive – A Full-Stack Productivity App
 
 **TaskHive** is a category-based task management application built with the **MERN** (MongoDB, Express, React, Node.js) stack. It helps users organize their tasks, assign priority, and manage daily productivity in an intuitive, dark-themed dashboard.
 
